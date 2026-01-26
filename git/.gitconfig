@@ -1,0 +1,25 @@
+[init]
+	defaultBranch = main
+[core]
+	editor = nano
+[merge]
+	conflictstyle = diff3
+[color]
+	ui = auto
+[rerere]
+	enabled = true
+[alias]
+	st = status
+	lg = log --oneline --graph --decorate --all
+	last = log -1 HEAD
+	undo = reset HEAD~1 --mixed
+	br = branch
+	cm = commit -m
+
+# Include local config (not in dotfiles)
+[include]
+    path = ~/.gitconfig.local
+
+# Use work config for work projects
+[includeIf "gitdir:~/cvs/"]
+    path = ~/.gitconfig.work

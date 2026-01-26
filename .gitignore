@@ -1,0 +1,12 @@
+# Don't commit SSH private keys
+ssh/.ssh/id_*
+ssh/.ssh/*.pem
+ssh/.ssh/known_hosts
+
+# Don't commit sensitive files
+**/secrets
+**/*.secret
+
+# Local/work-specific configs (not tracked)
+**/.gitconfig.local
+**/.gitconfig.work
