@@ -126,3 +126,13 @@ stow -D bash  # Removes all bash symlinks
 - `.gitignore` excludes all sensitive files (`*.work`, `*.local`, `id_*`)
 - Only configuration files are versioned
 - Work-specific details stay on local machine
+
+## ✅ TODO
+
+- [ ] Configure Starship
+- [ ] Verify bash configuration
+- [ ] Verify ssh configuration
+- [ ] Verify git configuration
+- [ ] Create install.sh
+- [ ] Add tmux configuration
+- [ ] Add error handling and logging
