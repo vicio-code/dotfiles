@@ -1,13 +1,30 @@
 [init]
 	defaultBranch = main
 [core]
-	editor = nano
+	editor = vim
+	pager = delta
 [merge]
 	conflictstyle = diff3
+[diff]
+    colorMoved = default
 [color]
 	ui = auto
 [rerere]
 	enabled = true
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    light = false
+    side-by-side = true
+    line-numbers = true
+    syntax-theme = TwoDark
+	features = decorations
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+    hunk-header-decoration-style = cyan box ul
 [alias]
 	st = status
 	lg = log --oneline --graph --decorate --all
@@ -15,7 +32,6 @@
 	undo = reset HEAD~1 --mixed
 	br = branch
 	cm = commit -m
-
 # Include local config (not in dotfiles)
 [include]
     path = ~/.gitconfig.local
