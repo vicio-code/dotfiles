@@ -41,6 +41,25 @@ if [[ ${BLE_VERSION-} ]]; then
     bleopt editor='vim'
 fi
 
+# ============= Less & Man Colors =============
+if command -v batcat &> /dev/null; then
+    # Use bat as man pager
+    export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+    export MANROFFOPT="-c"
+else
+    # Fallback to colored less
+    export LESS_TERMCAP_mb=$'\e[1;32m'
+    export LESS_TERMCAP_md=$'\e[1;32m'
+    export LESS_TERMCAP_me=$'\e[0m'
+    export LESS_TERMCAP_se=$'\e[0m'
+    export LESS_TERMCAP_so=$'\e[01;33m'
+    export LESS_TERMCAP_ue=$'\e[0m'
+    export LESS_TERMCAP_us=$'\e[1;4;31m'
+fi
+
+# Less options
+export LESS='-R -F -X -i -M'
+
 # ============= Aliases & Functions =============
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 [ -f ~/.bash_functions ] && . ~/.bash_functions
