@@ -27,6 +27,15 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# ============= PATH =============
+if [[ -d ~/.fzf/bin ]]; then
+    export PATH="$HOME/.fzf/bin:$PATH"
+fi
+# zoxide
+if [[ -d ~/.local/bin ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
 # ============= ble.sh Configuration =============
 if [[ ${BLE_VERSION-} ]]; then
     bleopt editor='vim'
@@ -73,6 +82,11 @@ fi
 
 # ============= Prompt =============
 eval "$(starship init bash)"
+
+# ============= zoxide =============
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init bash)"
+fi
 
 # ============= ble.sh Attach =============
 [[ ! ${BLE_VERSION-} ]] || ble-attach
