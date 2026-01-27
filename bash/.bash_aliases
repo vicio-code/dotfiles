@@ -60,3 +60,31 @@ alias kl='kubectl logs -f'
 # Clipboard (Linux)
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+
+# ============= Modern CLI Tools =============
+# bat (better cat with syntax highlighting)
+if command -v batcat &> /dev/null; then
+    alias cat='batcat --style=auto --paging=never'
+    alias ccat='/usr/bin/cat'  # original cat if needed
+fi
+
+# eza (better ls with icons and git)
+if command -v eza &> /dev/null; then
+    alias ls='eza --group-directories-first'
+    alias ll='eza -lah --group-directories-first --git'
+    alias la='eza -a --group-directories-first'
+    alias lt='eza -T --level=2 --group-directories-first'  # tree view
+    alias lls='/usr/bin/ls'  # original ls if needed
+fi
+
+# ripgrep (better grep)
+if command -v rg &> /dev/null; then
+    alias grep='rg'
+    alias ggrep='/usr/bin/grep'  # original grep if needed
+fi
+
+# fd (better find)
+if command -v fdfind &> /dev/null; then
+    alias find='fdfind'
+    alias ffind='/usr/bin/find'  # original find if needed
+fi
