@@ -56,9 +56,9 @@ fi
 
 # eza (better ls with icons and git)
 if command -v eza &> /dev/null; then
-    alias ls='eza --group-directories-first'
-    alias ll='eza -lah --group-directories-first --git'
-    alias la='eza -a --group-directories-first'
-    alias lt='eza -T --level=2 --group-directories-first'  # tree view
+    alias ls='eza -lh --group-directories-first --icons=auto'
+    alias lsa='ls -a'
+    alias lt='eza --tree --level=2 --long --icons --git'
+    alias lta='lt -a'
     alias lls='/usr/bin/ls'  # original ls if needed
 fi
