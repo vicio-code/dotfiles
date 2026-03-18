@@ -28,12 +28,9 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # ============= PATH =============
+# fzf
 if [[ -d ~/.fzf/bin ]]; then
-    export PATH="$HOME/.fzf/bin:$PATH"
-fi
-# zoxide
-if [[ -d ~/.local/bin ]]; then
-    export PATH="$HOME/.local/bin:$PATH"
+    [[ ":$PATH:" != *":$HOME/.fzf/bin:"* ]] && export PATH="$HOME/.fzf/bin:$PATH"
 fi
 
 # ============= ble.sh Configuration =============
@@ -79,6 +76,9 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 [[ ":$PATH:" != *":$PNPM_HOME:"* ]] && export PATH="$PNPM_HOME:$PATH"
 
 # ============= SSH Agent =============
+# Custom SSH agent management for persistent agent across terminal sessions.
+# This ensures a single SSH agent is reused instead of spawning multiple agents.
+# Useful when system-level SSH agent management is not available.
 # Reuse existing SSH agent or start a new one
 SSH_ENV="$HOME/.ssh/agent-env"
 

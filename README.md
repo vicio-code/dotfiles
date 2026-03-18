@@ -6,7 +6,7 @@ Personal configuration files managed with GNU Stow.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
+git clone this repo ~/dotfiles
 cd ~/dotfiles
 
 # 2. Copy template files and customize
@@ -39,16 +39,19 @@ These files are git-ignored and stay on your local machine only.
 ### What Goes in Each File?
 
 **~/.bash_personal** - Machine-specific bash settings:
+
 - AWS profiles
 - SSH shortcuts/aliases
 - SSH keys to auto-load
 - Personal aliases and functions
 
 **~/.gitconfig.personal** - Personal git identity:
+
 - Your personal name/email
 - GitHub SSH URLs (optional)
 
 **~/.gitconfig.work** - Work git identity (used for `~/cvs/*` directories):
+
 - Your work name/email
 - Work git server SSH URLs (optional)
 
@@ -67,7 +70,8 @@ dotfiles/
 ├── git/
 │   ├── .gitconfig           # Base git config
 │   ├── .gitconfig.personal.example  # Personal identity template
-│   └── .gitconfig.work.example      # Work identity template
+│   ├── .gitconfig.work.example      # Work identity template
+│   └── .gitignore_global    # Global ignore patterns
 ├── ssh/
 │   └── .ssh/
 │       └── config           # SSH client configuration
@@ -96,13 +100,14 @@ Editing `~/.bashrc` directly edits the file in your dotfiles repo, making it eas
 
 ## 🎨 Git Configuration Strategy
 
-The base git config includes conditional configurations:
+The base git config includes conditional configurations and a global ignore file:
 
 - **Work projects** (`~/cvs/*`): Uses `~/.gitconfig.work` (work email)
 - **Personal projects**: Uses `~/.gitconfig.personal` (personal email)
-- **Base settings**: Editor, aliases, colors (tracked in repo)
+- **Base settings**: Editor, aliases, colors, global ignores (tracked in repo)
+- **Global ignore**: `~/.gitignore_global` ignores common files across all repos
 
-This ensures you never accidentally commit with the wrong email address.
+This ensures you never accidentally commit with the wrong email address or clutter repos with OS/editor files.
 
 ## 🔄 Updating Configurations
 

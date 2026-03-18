@@ -77,7 +77,8 @@ dotfiles/
 ├── git/              # Git configuration package
 │   ├── .gitconfig    # Base git config (uses conditional includes)
 │   ├── .gitconfig.personal.example # Personal identity template
-│   └── .gitconfig.work.example     # Work identity template
+│   ├── .gitconfig.work.example     # Work identity template
+│   └── .gitignore_global # Global ignore patterns
 ├── ssh/              # SSH configuration package
 │   └── .ssh/config   # SSH client configuration
 ├── starship/         # Starship prompt package
@@ -252,12 +253,12 @@ This pattern applies to:
 The environment uses modern alternatives when available:
 - `bat/batcat` replaces `cat`
 - `eza` replaces `ls`
-- `ripgrep` (rg) replaces `grep`
-- `fd/fdfind` replaces `find`
+- `ripgrep` (rg) - use directly, not aliased over grep
+- `fd/fdfind` - use directly, not aliased over find
 - `delta` for git diffs
 - `starship` for prompt
 
-Preserve fallback aliases to original tools (e.g., `alias ccat='/usr/bin/cat'`)
+Preserve fallback aliases to original tools (e.g., `alias ccat='/usr/bin/cat'`, `alias lls='/usr/bin/ls'`)
 
 ## Adding New Configurations
 

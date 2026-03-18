@@ -3,6 +3,7 @@
 [core]
 	editor = vim
 	pager = delta
+	excludesfile = ~/.gitignore_global
 [merge]
 	conflictstyle = diff3
 [diff]
@@ -31,7 +32,13 @@
 	last = log -1 HEAD
 	undo = reset HEAD~1 --mixed
 	br = branch
-	cm = commit -m
+[pull]
+	rebase = false
+[push]
+	default = simple
+[maintenance]
+	auto = true
+	strategy = incremental
 # Include personal config (not in dotfiles)
 [include]
     path = ~/.gitconfig.personal
