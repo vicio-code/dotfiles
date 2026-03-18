@@ -79,25 +79,28 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 [[ ":$PATH:" != *":$PNPM_HOME:"* ]] && export PATH="$PNPM_HOME:$PATH"
 
 # ============= SSH Agent =============
-SSH_ENV="$HOME/.ssh/agent-environment"
+# Reuse existing SSH agent or start a new one
+SSH_ENV="$HOME/.ssh/agent-env"
 
-function start_agent {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
+start_ssh_agent() {
+    ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
 }
 
 if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-    }
+    # Check if agent is still running
+    if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
+        start_ssh_agent
+    fi
 else
-    start_agent;
+    start_ssh_agent
 fi
+
+# Load SSH keys from ~/.bash_personal if needed
+# Example in ~/.bash_personal:
+#   ssh-add ~/.ssh/id_ed25519 2>/dev/null
 
 # ============= Prompt =============
 eval "$(starship init bash)"
@@ -106,6 +109,9 @@ eval "$(starship init bash)"
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init bash)"
 fi
+
+# ============= Personal Configuration =============
+[ -f ~/.bash_personal ] && . ~/.bash_personal
 
 # ============= ble.sh Attach =============
 [[ ! ${BLE_VERSION-} ]] || ble-attach

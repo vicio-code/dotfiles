@@ -1,0 +1,43 @@
+name: Validate Dotfiles
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Check bash syntax
+      run: |
+        echo "Checking bash syntax..."
+        bash -n bash/.bashrc
+        bash -n bash/.bash_aliases
+        bash -n bash/.bash_functions
+        bash -n bash/.profile
+        bash -n bash/.bash_logout
+        bash -n bash/.blerc
+        echo "✅ All syntax checks passed"
+    
+    - name: Check for personal data
+      run: |
+        echo "Checking for personal data..."
+        if grep -r -i "lfalbo\|symplicity\|bedrock" bash/ git/ ssh/ starship/ README.md AGENTS.md 2>/dev/null | grep -v ".example"; then
+          echo "❌ Personal data found"
+          exit 1
+        fi
+        echo "✅ No personal data found"
+    
+    - name: Check example files exist
+      run: |
+        echo "Checking example files..."
+        test -f bash/.bash_personal.example
+        test -f git/.gitconfig.personal.example
+        test -f git/.gitconfig.work.example
+        echo "✅ All example files exist"

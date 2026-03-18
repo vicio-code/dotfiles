@@ -2,11 +2,13 @@
 ssh/.ssh/id_*
 ssh/.ssh/*.pem
 ssh/.ssh/known_hosts
+ssh/.ssh/agent-env
 
 # Don't commit sensitive files
 **/secrets
 **/*.secret
 
-# Local/work-specific configs (not tracked)
-**/.gitconfig.local
+# Personal/work configs (not tracked)
+**/.bash_personal
+**/.gitconfig.personal
 **/.gitconfig.work

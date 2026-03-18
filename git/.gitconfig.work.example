@@ -1,0 +1,8 @@
+# Work git identity (used for ~/cvs/* directories)
+[user]
+	name = Your Name
+	email = your.work@company.com
+
+# Work git server SSH (optional)
+[url "git@gitlab.company.com:"]
+	insteadOf = https://gitlab.company.com/

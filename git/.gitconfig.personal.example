@@ -1,0 +1,8 @@
+# Personal git identity
+[user]
+	name = Your Name
+	email = your.personal@email.com
+
+# GitHub SSH (optional)
+[url "git@github.com:"]
+	insteadOf = https://github.com/

@@ -1,0 +1,15 @@
+# ~/.bash_personal - Machine-specific configuration
+# Copy this file to ~/.bash_personal and customize
+
+# ============= AWS Configuration =============
+# export AWS_PROFILE=your-profile-here
+
+# ============= SSH Shortcuts =============
+# alias dev='ssh user@dev-server.com'
+
+# ============= SSH Keys =============
+# ssh-add ~/.ssh/id_ed25519 2>/dev/null
+# ssh-add ~/.ssh/id_ed25519_work 2>/dev/null
+
+# ============= Custom Aliases & Functions =============
+# Add any other machine-specific settings below

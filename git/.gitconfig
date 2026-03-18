@@ -32,9 +32,9 @@
 	undo = reset HEAD~1 --mixed
 	br = branch
 	cm = commit -m
-# Include local config (not in dotfiles)
+# Include personal config (not in dotfiles)
 [include]
-    path = ~/.gitconfig.local
+    path = ~/.gitconfig.personal
 
 # Use work config for work projects
 [includeIf "gitdir:~/cvs/"]
