@@ -33,6 +33,11 @@ if [[ -d ~/.fzf/bin ]]; then
     [[ ":$PATH:" != *":$HOME/.fzf/bin:"* ]] && export PATH="$HOME/.fzf/bin:$PATH"
 fi
 
+# zoxide
+if [[ -d ~/.local/bin ]]; then
+    [[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && export PATH="$HOME/.local/bin:$PATH"
+fi
+
 # ============= ble.sh Configuration =============
 if [[ ${BLE_VERSION-} ]]; then
     bleopt editor='vim'
