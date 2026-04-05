@@ -62,3 +62,6 @@ if command -v eza &> /dev/null; then
     alias lta='lt -a'
     alias lls='/usr/bin/ls'  # original ls if needed
 fi
+
+# opencode
+alias op='opencode'

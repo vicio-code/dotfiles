@@ -80,6 +80,9 @@ export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 [[ ":$PATH:" != *":$PNPM_HOME:"* ]] && export PATH="$PNPM_HOME:$PATH"
 
+# ============= Opencode =============
+export EDITOR="code --wait"
+
 # ============= SSH Agent =============
 # Custom SSH agent management for persistent agent across terminal sessions.
 # This ensures a single SSH agent is reused instead of spawning multiple agents.

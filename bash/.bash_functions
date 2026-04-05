@@ -49,6 +49,6 @@ localip() {
 }
 
 # Git clone and cd
-gcl() {
+gcd() {
     git clone "$1" && cd "$(basename "$1" .git)"
 }
