@@ -94,31 +94,9 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 export EDITOR="code --wait"
 
 # ============= SSH Agent =============
-# Custom SSH agent management for persistent agent across terminal sessions.
-# This ensures a single SSH agent is reused instead of spawning multiple agents.
-# Useful when system-level SSH agent management is not available.
-# Reuse existing SSH agent or start a new one
-SSH_ENV="$HOME/.ssh/agent-env"
-
-start_ssh_agent() {
-    ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-}
-
-if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    # Check if agent is still running
-    if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
-        start_ssh_agent
-    fi
-else
-    start_ssh_agent
-fi
-
-# Load SSH keys from ~/.bash_personal if needed
-# Example in ~/.bash_personal:
-#   ssh-add ~/.ssh/id_ed25519 2>/dev/null
+# Use keychain to manage SSH agent and keys across sessions.
+# Prompts for passphrase once per reboot, then caches keys for all terminals.
+command -v keychain &>/dev/null && eval "$(keychain --noask --quiet --eval id_ed25519_gitlab_work)"
 
 # ============= Prompt =============
 eval "$(starship init bash)"
