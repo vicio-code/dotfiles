@@ -99,11 +99,27 @@ export EDITOR="code --wait"
 command -v keychain &>/dev/null && eval "$(keychain --noask --quiet --eval id_ed25519_gitlab_work)"
 
 # ============= Prompt =============
-eval "$(starship init bash)"
+if command -v starship &> /dev/null; then
+    _starship_cache="$HOME/.cache/starship_init.sh"
+    _starship_ver="$HOME/.cache/starship_init.ver"
+    if [[ ! -f "$_starship_cache" ]] || [[ "$(starship --version 2>/dev/null)" != "$(cat "$_starship_ver" 2>/dev/null)" ]]; then
+        mkdir -p ~/.cache
+        starship init bash > "$_starship_cache"
+        starship --version > "$_starship_ver"
+    fi
+    source "$_starship_cache"
+fi
 
 # ============= zoxide =============
 if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init bash)"
+    _zoxide_cache="$HOME/.cache/zoxide_init.sh"
+    _zoxide_ver="$HOME/.cache/zoxide_init.ver"
+    if [[ ! -f "$_zoxide_cache" ]] || [[ "$(zoxide --version 2>/dev/null)" != "$(cat "$_zoxide_ver" 2>/dev/null)" ]]; then
+        mkdir -p ~/.cache
+        zoxide init bash > "$_zoxide_cache"
+        zoxide --version > "$_zoxide_ver"
+    fi
+    source "$_zoxide_cache"
 fi
 
 # ============= Personal Configuration =============
