@@ -50,6 +50,7 @@ fi
 # ============= ble.sh Configuration =============
 if [[ ${BLE_VERSION-} ]]; then
     bleopt editor='vim'
+    bleopt eof_string=
 fi
 
 # ============= Less & Man Colors =============
@@ -142,3 +143,5 @@ if [[ "$BASH_STARTUP_DEBUG" == "1" ]]; then
     set +x
     exec 2>&3 3>&-
 fi
+# opencode
+export PATH=/home/lfalbo/.opencode/bin:$PATH
