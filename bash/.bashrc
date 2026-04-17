@@ -50,7 +50,7 @@ fi
 # ============= ble.sh Configuration =============
 if [[ ${BLE_VERSION-} ]]; then
     bleopt editor='vim'
-    bleopt eof_string=
+    bleopt prompt_eol_mark=
 fi
 
 # ============= Less & Man Colors =============

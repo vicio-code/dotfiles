@@ -48,3 +48,8 @@ Reset and rebuild VSCode configuration following the dotfiles philosophy.
 - Detailed implementation plans are linked in each section
 - Follow the execution order specified in each plan
 - Run validation checks before committing changes
+
+## References
+
+- [vfarcic/dotfiles](https://github.com/vfarcic/dotfiles)
+- [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)
