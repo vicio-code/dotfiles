@@ -1,3 +1,12 @@
+# ============= Startup Profiling =============
+# Enable with: BASH_STARTUP_DEBUG=1 bash
+# Then check: /tmp/bash_startup.<PID>.log
+if [[ "$BASH_STARTUP_DEBUG" == "1" ]]; then
+    PS4='+ $BASH_SOURCE:$LINENO: '
+    exec 3>&2 2>/tmp/bash_startup.$$.log
+    set -x
+fi
+
 # ============= Initialization =============
 # ble.sh
 [[ $- == *i* ]] && source -- ~/.local/share/blesh/ble.sh --attach=none
@@ -127,3 +136,9 @@ fi
 
 # ============= ble.sh Attach =============
 [[ ! ${BLE_VERSION-} ]] || ble-attach
+
+# Close profiling if enabled
+if [[ "$BASH_STARTUP_DEBUG" == "1" ]]; then
+    set +x
+    exec 2>&3 3>&-
+fi
