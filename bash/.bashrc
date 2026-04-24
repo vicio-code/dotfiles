@@ -15,7 +15,7 @@ esac
 
 # ============= Initialization =============
 # ble.sh
-[[ $- == *i* ]] && { source -- ~/.local/share/blesh/ble.sh --attach=none; [[ ${BLE_VERSION-} ]] && ble-attach; }
+[[ $- == *i* ]] && source -- ~/.local/share/blesh/ble.sh --attach=none
 
 # ============= History =============
 HISTCONTROL=ignoreboth:erasedups
@@ -134,10 +134,8 @@ fi
 # ============= Personal Configuration =============
 [ -f ~/.bash_personal ] && . ~/.bash_personal
 
-# ============= Tmux Auto-Start =============
-if [[ -z "$TMUX" ]] && command -v tmux &> /dev/null && [[ -n "$PS1" ]]; then
-    tmux new-session
-fi
+# ============= ble.sh Attach =============
+[[ ! ${BLE_VERSION-} ]] || ble-attach
 
 # Close profiling if enabled
 if [[ "$BASH_STARTUP_DEBUG" == "1" ]]; then
