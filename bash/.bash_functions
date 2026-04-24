@@ -5,6 +5,10 @@ mkcd() {
 
 # Extract any archive type
 extract() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: extract <archive>"
+        return 1
+    fi
     if [ -f "$1" ]; then
         case "$1" in
             *.tar.bz2)   tar xjf "$1" || return 1    ;;
