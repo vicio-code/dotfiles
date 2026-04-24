@@ -7,15 +7,15 @@ if [[ "$BASH_STARTUP_DEBUG" == "1" ]]; then
     set -x
 fi
 
-# ============= Initialization =============
-# ble.sh
-[[ $- == *i* ]] && source -- ~/.local/share/blesh/ble.sh --attach=none
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
+
+# ============= Initialization =============
+# ble.sh
+[[ $- == *i* ]] && { source -- ~/.local/share/blesh/ble.sh --attach=none; [[ ${BLE_VERSION-} ]] && ble-attach; }
 
 # ============= History =============
 HISTCONTROL=ignoreboth:erasedups
@@ -134,9 +134,6 @@ fi
 
 # ============= Personal Configuration =============
 [ -f ~/.bash_personal ] && . ~/.bash_personal
-
-# ============= ble.sh Attach =============
-[[ ! ${BLE_VERSION-} ]] || ble-attach
 
 # Close profiling if enabled
 if [[ "$BASH_STARTUP_DEBUG" == "1" ]]; then
