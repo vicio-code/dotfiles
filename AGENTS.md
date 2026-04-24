@@ -4,7 +4,7 @@ This document provides guidelines for agentic coding assistants working in this 
 
 ## Repository Overview
 
-This is a personal dotfiles repository managed with **GNU Stow**. It contains shell configurations, git settings, SSH configs, and prompt customization using Starship. The repository uses a symlink-based approach where files are stowed from package directories to the home directory.
+This is a personal dotfiles repository managed with **GNU Stow**. It contains shell configurations, git settings, SSH configs, tmux configuration, and prompt customization using Starship. The repository uses a symlink-based approach where files are stowed from package directories to the home directory.
 
 ## Build/Test Commands
 
@@ -16,13 +16,14 @@ stow -n bash        # Simulate bash package
 stow -n git         # Simulate git package
 stow -n ssh         # Simulate ssh package
 stow -n starship    # Simulate starship package
+stow -n tmux        # Simulate tmux package
 
 # Actually stow packages
-stow bash git ssh starship
+stow bash git ssh starship tmux
 
 # Remove/unstow packages (for testing)
 stow -D bash        # Remove bash symlinks
-stow -D git ssh starship  # Remove all
+stow -D git ssh starship tmux  # Remove all
 ```
 
 ### Validation Commands
@@ -36,7 +37,7 @@ bash -n bash/.bash_logout
 bash -n bash/.blerc
 
 # Check for personal data (replace with actual names to search)
-grep -r "username\|company" bash/ git/ ssh/ starship/
+grep -r "username\|company" bash/ git/ ssh/ starship/ tmux/
 
 # Verify symlinks are created correctly
 ls -la ~ | grep -E '\.bashrc|\.gitconfig|\.ssh/config'
@@ -83,6 +84,8 @@ dotfiles/
 │   └── .ssh/config   # SSH client configuration
 ├── starship/         # Starship prompt package
 │   └── .config/starship.toml  # Prompt configuration
+├── tmux/             # Terminal multiplexer package
+│   └── .tmux.conf    # Tmux configuration
 ├── .github/workflows/ # CI/CD automation
 │   └── validate.yml  # Automated validation
 ├── .gitignore        # Excludes sensitive files
@@ -238,7 +241,7 @@ This pattern applies to:
 - `git/.gitconfig.work` - Work git identity
 
 ### GNU Stow Structure
-- Each package directory (bash/, git/, ssh/, starship/) mirrors home directory structure
+- Each package directory (bash/, git/, ssh/, starship/, tmux/) mirrors home directory structure
 - Files in `bash/` are stowed to `~/`
 - Files in `starship/.config/` are stowed to `~/.config/`
 - When adding configs: create proper directory structure within package
@@ -284,6 +287,6 @@ Scripts should:
 
 Before committing:
 1. Check bash syntax: `bash -n bash/.bashrc`
-2. Verify no personal data: `grep -r "username\|company" bash/ git/ ssh/ starship/`
-3. Test stowing: `stow -n bash git ssh starship`
+2. Verify no personal data: `grep -r "username\|company" bash/ git/ ssh/ starship/ tmux/`
+3. Test stowing: `stow -n bash git ssh starship tmux`
 4. Ensure GitHub Actions will pass (validates automatically on push)
