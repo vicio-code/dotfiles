@@ -145,4 +145,4 @@ if [[ "$BASH_STARTUP_DEBUG" == "1" ]]; then
     exec 2>&3 3>&-
 fi
 # opencode
-export PATH=/home/lfalbo/.opencode/bin:$PATH
+[[ ":$PATH:" != *":$HOME/.opencode/bin:"* ]] && export PATH="$HOME/.opencode/bin:$PATH"
