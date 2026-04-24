@@ -104,9 +104,8 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 export EDITOR="code --wait"
 
 # ============= SSH Agent =============
-# Use keychain to manage SSH agent and keys across sessions.
-# Prompts for passphrase once per reboot, then caches keys for all terminals.
-command -v keychain &>/dev/null && eval "$(keychain --noask --quiet --eval id_ed25519_gitlab_work)"
+# SSH agent is managed per-machine via .bash_personal (keychain or ssh-agent).
+# See .bash_personal.example for setup instructions.
 
 # ============= Prompt =============
 if command -v starship &> /dev/null; then

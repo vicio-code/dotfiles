@@ -8,8 +8,8 @@
 # alias dev='ssh user@dev-server.com'
 
 # ============= SSH Keys =============
-# ssh-add ~/.ssh/id_ed25519 2>/dev/null
-# ssh-add ~/.ssh/id_ed25519_work 2>/dev/null
+# Use keychain to manage SSH agent and keys across sessions.
+# command -v keychain &>/dev/null && eval "$(keychain --noask --quiet --eval id_ed25519)"
 
 # ============= Custom Aliases & Functions =============
 # Add any other machine-specific settings below
